@@ -1,5 +1,7 @@
-from rest_framework.response import Response
+from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework.views import APIView
 from .models import Date, Note
 from .serializers import DateSerializer, NoteSerializer
 
@@ -23,4 +25,15 @@ class NoteViewSet(viewsets.ModelViewSet):
                object_of_objects[current_search_key_value][current_object["id"]] = current_object
             else:
                 object_of_objects[current_search_key_value] = {current_object["id"]: current_object}
+        return Response(object_of_objects)
+
+class NotesByDate(APIView):
+    def get(self, request, date, format=None):
+        currentDateObject = get_object_or_404(Date, date=date)
+        currentDateNotes = Note.objects.filter(creation_date=currentDateObject)
+        list_of_objects = NoteSerializer(currentDateNotes, many=True).data
+        object_of_objects = {}
+        search_key = "id"
+        for current_object in list_of_objects:
+            object_of_objects[current_object[search_key]] = current_object
         return Response(object_of_objects)

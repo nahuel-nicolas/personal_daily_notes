@@ -26,7 +26,7 @@ def test_post_date(client):
 def test_post_note_with_date(client):
     models.Date.objects.create(date=datetime.date.today())
     todayDateString = datetime.date.today().strftime("%Y-%m-%d")
-    noteData = dict(body="A", creation_date=todayDateString)
+    noteData = dict(body="A")
     response = client.post('/note/', noteData)
     assert response.status_code == 201
     assert response.data["creation_date"].strftime("%Y-%m-%d") == todayDateString

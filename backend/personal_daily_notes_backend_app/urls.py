@@ -8,4 +8,5 @@ router.register('note', views.NoteViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('notesByDate/<str:date>/', views.NotesByDate.as_view())
 ]
