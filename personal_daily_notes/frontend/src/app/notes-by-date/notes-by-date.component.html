@@ -1,0 +1,9 @@
+<h2>{{currentDateString}}</h2>
+<div class="notes">
+    <div class="note" *ngFor="let note of notes">
+        <h4>ID: {{note.id}}</h4>
+        <p class="date">UTC Creation Datetime: {{note.utc_creation_datetime}}</p>
+        <p class="date">Local Creation Datetime: {{note.local_creation_datetime}}</p>
+        <p class="note-body">{{note.body}}</p>
+    </div>
+</div>
