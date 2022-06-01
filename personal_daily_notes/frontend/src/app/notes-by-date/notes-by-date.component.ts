@@ -6,11 +6,6 @@ import { BackendService } from '../backend.service';
 
 import { Note } from '../note';
 
-import { 
-  date_to_yyyymmddString, 
-  yyyymmddString_to_date 
-} from '../date_string_functions'
-
 @Component({
   selector: 'app-notes-by-date',
   templateUrl: './notes-by-date.component.html',

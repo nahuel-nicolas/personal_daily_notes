@@ -5,7 +5,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Note } from './note'
-import { Date } from './date';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +19,7 @@ export class BackendService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  private backendURL = 'http://127.0.0.1:8000/';  // URL to web backend api
+  private backendURL = 'http://127.0.0.1:8000/backend/';  // URL to web backend api
   private notesURL = this.backendURL + 'note/';
   private datesURL = this.backendURL + 'date/';
   private notesByDateBaseURL = this.backendURL + 'notesByDate/'

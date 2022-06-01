@@ -18,7 +18,7 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    path('', include('personal_daily_notes_backend_app.urls')),
-    path('frontend/', TemplateView.as_view(template_name='index.html')),
+    path('backend/', include('personal_daily_notes_backend_app.urls')),
+    path('', TemplateView.as_view(template_name='index.html')),
     path('admin/', admin.site.urls),
 ]

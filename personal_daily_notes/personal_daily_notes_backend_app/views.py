@@ -1,9 +1,11 @@
+import datetime
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Date, Note
 from .serializers import DateSerializer, NoteSerializer
+
 
 class DateViewSet(viewsets.ModelViewSet):
     queryset = Date.objects.all()
@@ -13,6 +15,8 @@ class DateViewSet(viewsets.ModelViewSet):
         queryset = Date.objects.all()
         serializer = self.serializer_class(queryset, many=True)
         list_of_objects = serializer.data
+        if not len(list_of_objects):
+            return Response({"extremeDates": [datetime.date.today(), datetime.date.today()]})
         dates = {"extremeDates": [list_of_objects[0]["date"], list_of_objects[-1]["date"]]}
         for current_object in list_of_objects:
             dates[current_object["date"]] = True
