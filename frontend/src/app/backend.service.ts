@@ -19,8 +19,26 @@ export class BackendService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  private backendURL = 'http://127.0.0.1:8000/';  // URL to web backend api
+  private backendURL = 'http://127.0.0.1:8000/backend/';  // URL to web backend api
   private notesURL = this.backendURL + 'note/';
+  private datesURL = this.backendURL + 'date/';
+  private notesByDateBaseURL = this.backendURL + 'notesByDate/'
+
+  getDates(): Observable<{}> {
+    return this.http.get<{}>(this.datesURL)
+      .pipe(
+        tap(_ => this.log('fetched dates')),
+        catchError(this.handleError<{}>('getDates', []))
+      );
+  }
+
+  getNotesByDate(date: string | null): Observable<[]> {
+    return this.http.get<[]>(this.notesByDateBaseURL + date + '/')
+      .pipe(
+        tap(_ => this.log(`fetched notes by date: ${date}`)),
+        catchError(this.handleError<[]>('getNotesByDate', []))
+      );
+  }
 
   /** POST: add a new note to the server */
   addNote(note: Note): Observable<Note> {

@@ -9,13 +9,34 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { SearchCalendarComponent } from './search-calendar/search-calendar.component';
 
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NotesByDateComponent } from './notes-by-date/notes-by-date.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     CreateNoteComponent,
-    SearchCalendarComponent
+    SearchCalendarComponent,
+    NotesByDateComponent
   ],
   imports: [
+    BrowserAnimationsModule,
+
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatNativeDateModule, 
+    MatRippleModule,
+
     HttpClientModule,
     FormsModule,
     BrowserModule,
